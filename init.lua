@@ -128,7 +128,7 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.scrolloff = 8
-vim.opt.colorcolumn = '100'
+-- vim.opt.colorcolumn = '100'
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
@@ -584,7 +584,6 @@ require('lazy').setup({
       local nvim_lsp = require 'lspconfig'
       local servers = {
         svelte = {},
-        solargraph = {},
         volar = {},
         tailwindcss = {},
         prettier = {},
@@ -610,19 +609,6 @@ require('lazy').setup({
           root_dir = nvim_lsp.util.root_pattern 'package.json',
           single_file_support = false,
         },
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
-        --
-
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -837,16 +823,6 @@ require('lazy').setup({
     end,
   },
   {
-    'zenbones-theme/zenbones.nvim',
-    name = 'zenbones',
-    priority = 1000,
-    lazy = false,
-    dependencies = 'rktjmp/lush.nvim',
-    init = function()
-      vim.cmd.colorscheme 'zenbones'
-    end,
-  },
-  {
     'rktjmp/lush.nvim',
   },
 
@@ -870,6 +846,8 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+
+      require('mini.icons').setup()
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
@@ -925,12 +903,16 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  -- require 'custom.plugins.debug',
+  -- require 'custom.plugins.indent_line',
+  -- require 'custom.plugins.lint',
+  -- require 'custom.plugins.autopairs',
+  require 'custom.plugins.neo-tree',
+  require 'custom.plugins.theme',
+  require 'custom.plugins.webdevicons',
+  require 'custom.plugins.snacks',
+  require 'custom.plugins.yazi',
+  -- require 'custom.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
